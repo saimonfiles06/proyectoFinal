@@ -1,0 +1,332 @@
+/* ======== RESET Y BASE ======== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('../img/fondo.png');
+    background-size: cover;
+    color: #f2f2f2;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Capa oscura sobre la imagen de fondo */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+/* ======== HEADER ======== */
+header {
+    background: rgba(0, 0, 0, 0.85);
+    border-bottom: 2px solid #d4af37;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    padding: 1rem 0;
+}
+
+.logo {
+    width: 180px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.btn-contacto {
+    background: linear-gradient(135deg, #d4af37, #b88a44);
+    border: none;
+    color: #111;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.btn-contacto:hover {
+    background: linear-gradient(135deg, #ffd700, #d4af37);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px #ffd700;
+}
+
+/* ======== MAIN ======== */
+main {
+    padding: 3rem 0;
+}
+
+.miCol {
+    background: rgba(0, 0, 0, 0.75);
+    padding: 2rem 0;
+    border-top: 1px solid #d4af37;
+    border-bottom: 1px solid #d4af37;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+/* ======== TARJETAS ======== */
+.card {
+    background: rgba(25, 25, 25, 0.9);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+}
+
+.card-img-top {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    color: #ffd700;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    color: #bbb;
+    font-size: 0.95rem;
+}
+
+.card .btn {
+    background: linear-gradient(135deg, #b30000, #ff0000);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.card .btn:hover {
+    background: linear-gradient(135deg, #ff1a1a, #ff4d4d);
+    box-shadow: 0 0 12px #ff1a1a;
+    transform: translateY(-2px);
+}
+.tapete-img,
+.ruleta-img {
+    max-width: 85%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.tapete-img:hover,
+.ruleta-img:hover {
+    transform: scale(1.05);
+}
+
+
+.ruleta-btn {
+    background: linear-gradient(135deg, #b30000, #ff0000);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 0.8rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.ruleta-btn:hover {
+    background: linear-gradient(135deg, #ff1a1a, #ff4d4d);
+    box-shadow: 0 0 12px #ff1a1a;
+    transform: translateY(-2px);
+}
+
+.ruleta-header {
+    width: 180px;
+    /* Ajusta el tamaño a tu gusto */
+    height: auto;
+    object-fit: contain;
+    border: 5px solid #d4af37;
+}
+
+.mesa-img {
+    max-width: 500px;
+    border: 5px solid #d4af37;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+}
+
+.mesa-header {
+    width: 80px;
+    height: auto;
+}
+
+.blackjack-btn {
+    background: linear-gradient(135deg, #ff1a1a, #ff4d4d);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 0.8rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.blackjack-btn:hover {
+    background: linear-gradient(135deg, #ff1a1a, #ff4d4d);
+    box-shadow: 0 0 12px #ff1a1a;
+    transform: translateY(-2px);
+}
+
+/* Tarjeta del login */
+.login-card {
+    background: rgba(0, 0, 0, 0.85);
+    border: 2px solid #d4af37;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Inputs del login */
+.login-input {
+    background: rgba(30, 30, 30, 0.9);
+    border: 1px solid #d4af37;
+    border-radius: 10px;
+    color: #fff;
+    padding: 0.7rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.login-input:focus {
+    border-color: #ffd700;
+    box-shadow: 0 0 8px #ffd700;
+    outline: none;
+}
+
+/* Botón de login */
+.login-btn {
+    background: linear-gradient(135deg, #b30000, #ff0000);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.8rem 0;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    background: linear-gradient(135deg, #ff1a1a, #ff4d4d);
+    box-shadow: 0 0 12px #ff1a1a;
+    transform: translateY(-2px);
+}
+
+/* Enlace de recuperar contraseña */
+.link-recuperar {
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: left;
+}
+
+.link-recuperar:hover {
+    color: #ff4d4d;
+    text-decoration: underline;
+}
+
+
+/* === TRAGAPERRAS === */
+.tragaperras-img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.tragaperras-img:hover {
+    transform: scale(1.05);
+}
+
+/* Pantalla de la tragaperras (simulada) */
+.slot-screen {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: rgba(20, 20, 20, 0.9);
+    border: 3px solid #ffd700;
+    border-radius: 10px;
+    padding: 15px 0;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.reel {
+    font-size: 2rem;
+    color: #ffd700;
+}
+
+/* Botones */
+.slot-btn {
+    background: linear-gradient(145deg, #ffd700, #ff4d4d);
+    border: none;
+    color: #000;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    padding: 10px 20px;
+}
+
+.slot-btn:hover {
+    background: linear-gradient(145deg, #ff4d4d, #ffd700);
+    transform: translateY(-2px);
+}
+
+/* === FOOTER === */
+.footer {
+    background: rgba(0, 0, 0, 0.9);
+    color: #f2f2f2;
+    border-top: 2px solid #ffd700;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: #ffd700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #ff4d4d;
+}
+
+.footer-logo {
+    width: 120px;
+    height: auto;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3));
+}
+
+.footer ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.social-icons a {
+    color: #ffd700;
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #ff4d4d;
+    transform: scale(1.2);
+}
