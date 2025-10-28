@@ -209,18 +209,29 @@ footer {
   min-height: 200px;
 }
 /* ===== Tragaperras - Estética completa ===== */
+
+/* Contenedor principal de las 3 columnas */
 .slots-game-area {
   display: flex;
   justify-content: space-between;
   gap: 20px;
   margin-top: 30px;
-  flex-wrap: wrap; /* Para que en móviles se apilen */
+  flex-wrap: wrap; /* Permite apilar en móviles */
 }
 
-/* Explicación de ganancias */
-.slots-explanation {
-  flex: 1;
+/* Cada columna de la zona de juego */
+.slots-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1; /* Ocupa el mismo ancho relativo entre columnas */
   min-width: 180px;
+  align-items: center; /* Centra los elementos en la columna */
+}
+
+/* Explicación de ganancias (columna izquierda) */
+.slots-explanation {
+  width: 100%;
   max-width: 300px;
   border: 3px solid #c9a23f;
   border-radius: 15px;
@@ -228,12 +239,15 @@ footer {
   background-color: #111;
   text-align: left;
   color: #c9a23f;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinea contenido arriba */
+  gap: 15px; /* Separación interna si hay más contenido */
 }
 
-/* Interfaz de slots (centro) */
+/* Interfaz de slots (columna central) */
 .slots-interface {
-  flex: 1;
-  min-width: 200px;
+  width: 100%;
   max-width: 400px;
   height: 200px;
   background-color: #111;
@@ -248,10 +262,9 @@ footer {
   text-align: center;
 }
 
-/* Ganancias acumuladas (derecha) */
+/* Ganancias acumuladas (columna derecha) */
 .slots-winnings {
-  flex: 1;
-  min-width: 180px;
+  width: 100%;
   max-width: 250px;
   background-color: #111;
   border: 3px solid #c9a23f;
@@ -262,27 +275,37 @@ footer {
   font-weight: bold;
 }
 
-/* ===== Botones distribuidos por columna ===== */
-.botones-slots-container {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap; /* Responsivo para móviles */
-  margin-top: 20px;
-  width: 100%;
-}
-
-/* Cada columna de botones */
+/* ===== Botones de cada columna, igual ancho que el elemento superior ===== */
 .botones-col {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  flex: 1;
-  min-width: 120px;
+  width: 100%; /* Ocupa todo el ancho de la columna */
 }
 
-/* Botones de slots */
+/* Botones debajo de la explicación (columna izquierda) */
+.slots-col:first-child .botones-col {
+  max-width: 300px; /* Igual que la explicación */
+}
+
+/* Botones debajo de la interfaz de slots (columna central) */
+.slots-col:nth-child(2) .botones-col {
+  max-width: 400px; /* Igual que la interfaz */
+}
+
+/* Botones debajo de ganancias (columna derecha) */
+.slots-col:last-child .botones-col {
+  max-width: 250px; /* Igual que las ganancias */
+}
+
+/* Separación entre explicación y botones */
+.slots-col .botones-col {
+  margin-top: 10px;
+}
+
+/* Estilo de los botones */
 .btn-slots {
+  width: 100%; /* Llenan el ancho del contenedor */
   background-color: #c9a23f;
   color: #0a0a0a;
   font-weight: bold;
