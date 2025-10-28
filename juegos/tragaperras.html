@@ -1,64 +1,77 @@
 <!DOCTYPE html>
 <html lang="es-ES">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tragaperras - Gran Casino</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/estilos.css">
-  <link rel="shortcut icon" href="../img/tragaperras.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../img/slots.png" type="image/x-icon">
+  <script src="https://kit.fontawesome.com/a2e0e9c6f3.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-<header class="d-flex justify-content-between align-items-center p-3">
-  <a href="../index.html" class="navbar-brand">
-    <img src="../img/logo.png" alt="Logo de Gran Casino" class="header-logo">
-  </a>
-</header>
+  <header class="d-flex justify-content-between align-items-center p-3">
+    <a href="../index.html" class="navbar-brand">
+      <img src="../img/logo.png" alt="Logo de Gran Casino" class="header-logo">
+    </a>
+    <img src="../img/slots.png" alt="Tragaperras de Gran Casino" class="header-ruleta img-fluid">
+  </header>
 
-<main class="container text-center">
-  <h1 class="titulo mb-4 mt-4">Tragaperras</h1>
-  <p class="text-light mb-5">¡Gira los carretes y consigue grandes ganancias!</p>
+  <main class="container text-center">
+    <h1 class="titulo mb-4 mt-4">Tragaperras</h1>
+    <p class="text-light mb-5">¡Prueba suerte con nuestras máquinas de azar!</p>
 
-  <!-- Zona de juego en 3 columnas -->
-  <div class="slots-game-area">
-
-    <!-- Columna izquierda: explicación + botones -->
-    <div class="slots-col">
+    <!-- Zona principal -->
+    <div class="slots-game-area">
+      <!-- Explicación -->
       <div class="slots-explanation">
-        <img src="../img/explicacionGanancias.png" alt="Explicación de ganancias" class="img-fluid">
+        <h3>Tabla de Ganancias</h3>
+        <img src="../img/explicacionGanancias.png" alt="Tabla de ganancias" class="img-fluid" style="border-radius:10px;">
       </div>
-      <div class="botones-col">
-        <button class="btn-slots">Repetir apuesta</button>
-        <button class="btn-slots">Reducir apuesta</button>
-      </div>
-    </div>
 
-    <!-- Columna central: slots + botón -->
-    <div class="slots-col d-flex flex-column align-items-center">
+      <!-- Slots -->
       <div class="slots-interface">
-        Zona de Slots
+        🎰 Slots en desarrollo
       </div>
-      <div class="botones-col mt-2">
-        <button class="btn-slots">Aumentar apuesta</button>
-      </div>
-    </div>
 
-    <!-- Columna derecha: ganancias + botones -->
-    <div class="slots-col d-flex flex-column align-items-end">
+      <!-- Ganancias -->
       <div class="slots-winnings">
-        Ganancias actuales: $0
-      </div>
-      <div class="botones-col mt-2">
-        <button class="btn-slots">All in</button>
-        <button class="btn-slots">Recargar $</button>
+        <h4>Ganancias</h4>
+        <p>$250</p>
       </div>
     </div>
 
-  </div>
-</main>
+    <!-- Botones (manteniendo estructura vertical) -->
+    <div class="botones-slots-container">
+      <!-- Fila 1 -->
+      <div class="botones-fila">
+        <div class="botones-col explicacion">
+          <button class="btn-slots">Repetir apuesta</button>
+        </div>
+        <div class="botones-col tragaperras"></div>
+        <div class="botones-col ganancias">
+          <button class="btn-slots">All In</button>
+        </div>
+      </div>
+
+      <!-- Fila 2 -->
+      <div class="botones-fila">
+        <div class="botones-col explicacion">
+          <button class="btn-slots">Reducir apuesta</button>
+        </div>
+        <div class="botones-col tragaperras">
+          <button class="btn-slots">Aumentar apuesta</button>
+        </div>
+        <div class="botones-col ganancias">
+          <button class="btn-slots">Recargar $</button>
+        </div>
+      </div>
+    </div>
+  </main>
 
 </body>
-
 <footer class="footer mt-5">
   <div class="container py-4">
     <div class="row text-center text-md-start align-items-center">
@@ -74,11 +87,12 @@
       </div>
       <div class="col-md-4 text-md-end text-center">
         <p class="mb-0 correo-footer">
-          <i class="fa-solid fa-envelope"></i> 
+          <i class="fa-solid fa-envelope"></i>
           <a href="mailto:contacto@grancasinovalencia.com">contacto@grancasinovalencia.com</a>
         </p>
       </div>
     </div>
   </div>
 </footer>
+
 </html>
