@@ -31,15 +31,40 @@ header {
   color: #c9a23f;
 }
 
+/* ====== Ajustes para que todas las cards tengan la misma altura ====== */
 .card {
-  background-color: #1a1a1a;
-  border: 1px solid #c9a23f;
+  background-color: #111;
   color: #fff;
-  transition: transform 0.3s;
+  border: 2px solid #c9a23f;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.card img {
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card .btn {
+  margin-top: auto;
+}
+/* Efecto hover */
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(201, 162, 63, 0.4);
 }
 
 footer {
