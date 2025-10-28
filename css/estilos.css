@@ -208,7 +208,95 @@ footer {
   color: #c9a23f;
   min-height: 200px;
 }
- 
+/* ===== Tragaperras - Estética completa ===== */
+.slots-game-area {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap; /* Para que en móviles se apilen */
+}
+
+/* Explicación de ganancias */
+.slots-explanation {
+  flex: 1;
+  min-width: 180px;
+  max-width: 300px;
+  border: 3px solid #c9a23f;
+  border-radius: 15px;
+  padding: 15px;
+  background-color: #111;
+  text-align: left;
+  color: #c9a23f;
+}
+
+/* Interfaz de slots (centro) */
+.slots-interface {
+  flex: 1;
+  min-width: 200px;
+  max-width: 400px;
+  height: 200px;
+  background-color: #111;
+  border: 5px solid #c9a23f;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(201, 162, 63, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #c9a23f;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+/* Ganancias acumuladas (derecha) */
+.slots-winnings {
+  flex: 1;
+  min-width: 180px;
+  max-width: 250px;
+  background-color: #111;
+  border: 3px solid #c9a23f;
+  border-radius: 15px;
+  padding: 10px;
+  text-align: right;
+  color: #c9a23f;
+  font-weight: bold;
+}
+
+/* ===== Botones distribuidos por columna ===== */
+.botones-slots-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap; /* Responsivo para móviles */
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* Cada columna de botones */
+.botones-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-width: 120px;
+}
+
+/* Botones de slots */
+.btn-slots {
+  background-color: #c9a23f;
+  color: #0a0a0a;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.btn-slots:hover {
+  background-color: #e1be58;
+}
+
 /* === FOOTER === */
 .footer {
     background: rgba(0, 0, 0, 0.9);
