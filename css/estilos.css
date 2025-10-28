@@ -4,6 +4,7 @@ body {
   font-family: 'Segoe UI', sans-serif;
 }
 
+/* ====== HEADER ====== */
 header {
   background-color: #0a0a0a;
   border-bottom: 2px solid #c9a23f;
@@ -164,16 +165,16 @@ header {
 
 .botones-blackjack {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
-  max-width: 700px;
+  max-width: 600px;
   width: 100%;
 }
 
 .btn-blackjack {
-  flex: 1;
-  min-width: 120px;
+  flex: 1 1 45%;
+  min-width: 140px;
   background-color: #c9a23f;
   color: #0a0a0a;
   font-weight: bold;
@@ -239,6 +240,7 @@ header {
   font-weight: bold;
 }
 
+/* Botones tragaperras */
 .botones-slots-container {
   display: flex;
   flex-direction: column;
@@ -260,20 +262,9 @@ header {
   gap: 10px;
 }
 
-.botones-col.explicacion {
-  width: 100%;
-  max-width: 300px;
-}
-
-.botones-col.tragaperras {
-  width: 100%;
-  max-width: 400px;
-}
-
-.botones-col.ganancias {
-  width: 100%;
-  max-width: 250px;
-}
+.botones-col.explicacion { max-width: 300px; }
+.botones-col.tragaperras { max-width: 400px; }
+.botones-col.ganancias { max-width: 250px; }
 
 .btn-slots {
   width: 100%;
@@ -282,7 +273,7 @@ header {
   font-weight: bold;
   border: none;
   border-radius: 10px;
-  padding: 10px;
+  padding: 12px;
   transition: background-color 0.3s;
   text-align: center;
 }
@@ -317,14 +308,8 @@ header {
   color: #c9a23f;
 }
 
-.carrera-apuestas {
-  text-align: left;
-}
-
-.carrera-ganancias {
-  text-align: right;
-  font-weight: bold;
-}
+.carrera-apuestas { text-align: left; }
+.carrera-ganancias { text-align: right; font-weight: bold; }
 
 .carrera-pista {
   background-color: #111;
@@ -352,9 +337,7 @@ header {
   transition: background-color 0.3s;
 }
 
-.btn-carrera:hover {
-  background-color: #e1be58;
-}
+.btn-carrera:hover { background-color: #e1be58; }
 
 /* ===== Footer ===== */
 .footer {
@@ -370,90 +353,56 @@ header {
   transition: color 0.3s ease;
 }
 
-.footer a:hover {
-  color: #ff4d4d;
-}
+.footer a:hover { color: #ff4d4d; }
 
-/* ======= RESPONSIVE DESIGN ======= */
+/* ======= RESPONSIVE ======= */
 
 /* 📱 Móvil */
 @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
+  header { flex-direction: column; text-align: center; gap: 15px; }
+  .navbar-brand img { height: 80px; }
+  .main-ruleta, .slots-game-area, .carrera-game-area { flex-direction: column; align-items: center; }
+  .tapete, .ruleta-container, .slots-explanation, .slots-interface, .slots-winnings, .carrera-columna {
+    width: 100%; max-width: 400px;
   }
-
-  .navbar-brand img {
-    height: 80px;
-  }
-
-  .main-ruleta,
-  .slots-game-area,
-  .carrera-game-area {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .tapete,
-  .ruleta-container,
-  .slots-explanation,
-  .slots-interface,
-  .slots-winnings,
-  .carrera-columna {
-    width: 100%;
-    max-width: 400px;
-  }
-
-  .botones-fila {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .btn-ruleta,
-  .btn-slots,
-  .btn-blackjack,
-  .btn-carrera {
-    width: 100%;
-    font-size: 0.95rem;
-  }
-
-  footer {
-    font-size: 0.8rem;
-  }
+  .botones-fila { flex-direction: column; align-items: center; }
+  .btn-ruleta, .btn-slots, .btn-blackjack, .btn-carrera { width: 100%; font-size: 0.95rem; }
+  footer { font-size: 0.8rem; }
 }
 
-/* 💻 Tablet (horizontal o vertical) */
+/* 💻 TABLET */
 @media (min-width: 769px) and (max-width: 1024px) {
-  header {
-    padding: 10px 20px;
+  header { padding: 10px 20px; }
+
+  /* Cards — 3 por fila iguales */
+  .card {
+    flex: 1 1 calc(33.333% - 20px);
+    max-width: calc(33.333% - 20px);
   }
 
-  .main-ruleta,
-  .slots-game-area,
-  .carrera-game-area {
+  .main-ruleta, .slots-game-area, .carrera-game-area {
     flex-wrap: wrap;
     justify-content: center;
     gap: 25px;
   }
 
-  .tapete,
-  .ruleta-container,
-  .slots-explanation,
-  .slots-interface,
-  .slots-winnings,
+  .tapete, .ruleta-container,
+  .slots-explanation, .slots-interface, .slots-winnings,
   .carrera-columna {
     flex: 1 1 45%;
     max-width: 45%;
   }
 
-  .ruleta-img {
-    width: 250px;
+  .botones-fila { flex-wrap: wrap; justify-content: center; }
+
+  .btn-slots {
+    flex: 1 1 calc(48%);
+    max-width: calc(48%);
+    height: 55px;
   }
 
-  .btn-ruleta,
-  .btn-slots,
-  .btn-carrera {
-    font-size: 1rem;
-  }
+  .btn-blackjack { flex: 1 1 45%; max-width: 45%; }
+  .ruleta-img { width: 260px; }
+
+  .btn-ruleta, .btn-slots, .btn-carrera { font-size: 1rem; }
 }
