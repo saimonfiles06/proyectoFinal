@@ -7,92 +7,77 @@
   <title>Tragaperras - Gran Casino</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/estilos.css">
-  <link rel="shortcut icon" href="../img/slots.png" type="image/x-icon">
-  <script src="https://kit.fontawesome.com/a2e0e9c6f3.js" crossorigin="anonymous"></script>
+  <link rel="shortcut icon" href="../img/tragaperras.png" type="image/x-icon">
 </head>
 
 <body>
-  <header class="d-flex justify-content-between align-items-center p-3">
+  <header class="d-flex justify-content-between align-items-center p-3 flex-wrap">
     <a href="../index.html" class="navbar-brand">
       <img src="../img/logo.png" alt="Logo de Gran Casino" class="header-logo">
     </a>
-    <img src="../img/slots.png" alt="Tragaperras de Gran Casino" class="header-ruleta img-fluid">
+    <img src="../img/slots.png" alt="Tragaperras" class="header-ruleta img-fluid">
   </header>
 
   <main class="container text-center">
     <h1 class="titulo mb-4 mt-4">Tragaperras</h1>
-    <p class="text-light mb-5">¡Prueba suerte con nuestras máquinas de azar!</p>
+    <p class="text-light mb-5">¡Gira y gana si consigues tres símbolos iguales!</p>
 
     <!-- Zona principal -->
     <div class="slots-game-area">
-      <!-- Explicación -->
+      <!-- Explicación de apuesta -->
       <div class="slots-explanation">
-        <h3>Tabla de Ganancias</h3>
-        <img src="../img/explicacionGanancias.png" alt="Tabla de ganancias" class="img-fluid" style="border-radius:10px;">
+        <p>Tu apuesta: $<span id="slot-apuesta">10</span></p>
       </div>
 
-      <!-- Slots -->
-      <div class="slots-interface">
-        🎰 Slots en desarrollo
+      <!-- Interfaz de los reels -->
+      <div class="slots-interface" id="slot-reels">
+        🍒 🍋 🍉
       </div>
 
       <!-- Ganancias -->
       <div class="slots-winnings">
-        <h4>Ganancias</h4>
-        <p>$250</p>
+        Ganancias: $<span id="slot-ganancias">0</span>
       </div>
     </div>
 
-    <!-- Botones (manteniendo estructura vertical) -->
+    <!-- Botones -->
     <div class="botones-slots-container">
-      <!-- Fila 1 -->
       <div class="botones-fila">
-        <div class="botones-col explicacion">
-          <button class="btn-slots">Repetir apuesta</button>
-        </div>
-        <div class="botones-col tragaperras"></div>
-        <div class="botones-col ganancias">
-          <button class="btn-slots">All In</button>
-        </div>
-      </div>
-
-      <!-- Fila 2 -->
-      <div class="botones-fila">
-        <div class="botones-col explicacion">
-          <button class="btn-slots">Reducir apuesta</button>
+        <div class="botones-col tragaperras">
+          <button class="btn-slots" id="slot-spin">Girar</button>
         </div>
         <div class="botones-col tragaperras">
-          <button class="btn-slots">Aumentar apuesta</button>
-        </div>
-        <div class="botones-col ganancias">
-          <button class="btn-slots">Recargar $</button>
+          <button class="btn-slots" id="slot-repetir">Repetir apuesta</button>
         </div>
       </div>
     </div>
   </main>
 
-</body>
-<footer class="footer mt-5">
-  <div class="container py-4">
-    <div class="row text-center text-md-start align-items-center">
-      <div class="col-md-4 mb-3 mb-md-0">
-        <p class="mb-0">© 2025 Gran Casino Uganda / Valencia. Todos los derechos reservados.</p>
-      </div>
-      <div class="col-md-4 mb-3 mb-md-0 text-center">
-        <ul class="list-unstyled mb-0">
-          <li><a href="/legal/aviso-legal.html">Aviso Legal</a></li>
-          <li><a href="/legal/privacidad.html">Política de Privacidad</a></li>
-          <li><a href="/legal/terminos.html">Términos de Uso</a></li>
-        </ul>
-      </div>
-      <div class="col-md-4 text-md-end text-center">
-        <p class="mb-0 correo-footer">
-          <i class="fa-solid fa-envelope"></i>
-          <a href="mailto:contacto@grancasinovalencia.com">contacto@grancasinovalencia.com</a>
-        </p>
+  <footer class="footer mt-5">
+    <div class="container py-4">
+      <div class="row text-center text-md-start align-items-center">
+        <div class="col-md-4 mb-3 mb-md-0">
+          <p class="mb-0">© 2025 Gran Casino Uganda / Valencia. Todos los derechos reservados.</p>
+        </div>
+        <div class="col-md-4 mb-3 mb-md-0 text-center">
+          <ul class="list-unstyled mb-0">
+            <li><a href="/legal/aviso-legal.html">Aviso Legal</a></li>
+            <li><a href="/legal/privacidad.html">Política de Privacidad</a></li>
+            <li><a href="/legal/terminos.html">Términos de Uso</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 text-md-end text-center">
+          <p class="mb-0 correo-footer">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:contacto@grancasinovalencia.com">contacto@grancasinovalencia.com</a>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
+
+  <!-- Script de funcionalidad -->
+  <script src="../js/slots.js"></script>
+</body>
 
 </html>
