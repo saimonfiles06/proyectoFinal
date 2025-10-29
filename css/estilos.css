@@ -206,7 +206,7 @@ header {
   border-radius: 15px;
   padding: 15px;
   background-color: #111;
-  text-align: left;
+  text-align: center;
   color: #c9a23f;
 }
 
@@ -235,7 +235,7 @@ header {
   border: 3px solid #c9a23f;
   border-radius: 15px;
   padding: 10px;
-  text-align: right;
+  text-align: center;
   color: #c9a23f;
   font-weight: bold;
 }
@@ -262,9 +262,17 @@ header {
   gap: 10px;
 }
 
-.botones-col.explicacion { max-width: 300px; }
-.botones-col.tragaperras { max-width: 400px; }
-.botones-col.ganancias { max-width: 250px; }
+.botones-col.explicacion {
+  max-width: 300px;
+}
+
+.botones-col.tragaperras {
+  max-width: 400px;
+}
+
+.botones-col.ganancias {
+  max-width: 250px;
+}
 
 .btn-slots {
   width: 100%;
@@ -308,8 +316,14 @@ header {
   color: #c9a23f;
 }
 
-.carrera-apuestas { text-align: left; }
-.carrera-ganancias { text-align: right; font-weight: bold; }
+.carrera-apuestas {
+  text-align: left;
+}
+
+.carrera-ganancias {
+  text-align: right;
+  font-weight: bold;
+}
 
 .carrera-pista {
   background-color: #111;
@@ -337,7 +351,9 @@ header {
   transition: background-color 0.3s;
 }
 
-.btn-carrera:hover { background-color: #e1be58; }
+.btn-carrera:hover {
+  background-color: #e1be58;
+}
 
 /* ===== Footer ===== */
 .footer {
@@ -353,47 +369,124 @@ header {
   transition: color 0.3s ease;
 }
 
-.footer a:hover { color: #ff4d4d; }
-
-/* ======= RESPONSIVE ======= */
-
-/* 📱 Móvil */
+.footer a:hover {
+  color: #ff4d4d;
+}
+/* ==========================================================
+   📱 ESTILOS PARA MÓVIL
+   ========================================================== */
 @media (max-width: 768px) {
-  header { flex-direction: column; text-align: center; gap: 15px; }
-  .navbar-brand img { height: 80px; }
-  .main-ruleta, .slots-game-area, .carrera-game-area { flex-direction: column; align-items: center; }
-  .tapete, .ruleta-container, .slots-explanation, .slots-interface, .slots-winnings, .carrera-columna {
-    width: 100%; max-width: 400px;
+
+  /* ===== Header ===== */
+  header {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
   }
-  .botones-fila { flex-direction: column; align-items: center; }
-  .btn-ruleta, .btn-slots, .btn-blackjack, .btn-carrera { width: 100%; font-size: 0.95rem; }
-  footer { font-size: 0.8rem; }
+
+  .navbar-brand img {
+    height: 80px;
+  }
+
+  /* ===== Secciones de juego ===== */
+  .main-ruleta,
+  .slots-game-area,
+  .carrera-game-area {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ===== Columnas principales ===== */
+  .tapete,
+  .ruleta-container,
+  .slots-explanation,
+  .slots-interface,
+  .slots-winnings,
+  .carrera-columna {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  /* ===== Botones ===== */
+  .botones-fila {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-ruleta,
+  .btn-slots,
+  .btn-blackjack,
+  .btn-carrera {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    font-size: 0.8rem;
+  }
 }
 
-/* 💻 TABLET */
+/* ==========================================================
+   💻 ESTILOS PARA TABLET
+   ========================================================== */
 @media (min-width: 769px) and (max-width: 1024px) {
-  header { padding: 10px 20px; }
 
-  /* Cards — 3 por fila iguales */
+  /* ===== Header ===== */
+  header {
+    padding: 10px 20px;
+  }
+
+  /* ===== Cards ===== */
+  /* 3 por fila iguales */
   .card {
     flex: 1 1 calc(33.333% - 20px);
     max-width: calc(33.333% - 20px);
   }
 
-  .main-ruleta, .slots-game-area, .carrera-game-area {
+  /* Imagen de la card de carrera de caballos ajustada */
+  .card img[src*="carrera"] {
+    height: 220px;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  /* Igualamos altura visual de todas las cards */
+  .card {
+    flex: 1 1 30%;
+    max-width: 30%;
+  }
+
+  /* Evita que las cards se rompan en filas desiguales */
+  .row.cards {
+    justify-content: center;
+    gap: 20px;
+  }
+
+  /* ===== Áreas de juego ===== */
+  .main-ruleta,
+  .slots-game-area,
+  .carrera-game-area {
     flex-wrap: wrap;
     justify-content: center;
     gap: 25px;
   }
 
-  .tapete, .ruleta-container,
-  .slots-explanation, .slots-interface, .slots-winnings,
+  .tapete,
+  .ruleta-container,
+  .slots-explanation,
+  .slots-interface,
+  .slots-winnings,
   .carrera-columna {
     flex: 1 1 45%;
     max-width: 45%;
   }
 
-  .botones-fila { flex-wrap: wrap; justify-content: center; }
+  /* ===== Botones ===== */
+  .botones-fila {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
   .btn-slots {
     flex: 1 1 calc(48%);
@@ -401,8 +494,19 @@ header {
     height: 55px;
   }
 
-  .btn-blackjack { flex: 1 1 45%; max-width: 45%; }
-  .ruleta-img { width: 260px; }
+  .btn-blackjack {
+    flex: 1 1 45%;
+    max-width: 45%;
+  }
 
-  .btn-ruleta, .btn-slots, .btn-carrera { font-size: 1rem; }
+  .btn-ruleta,
+  .btn-slots,
+  .btn-carrera {
+    font-size: 1rem;
+  }
+
+  /* ===== Ruleta ===== */
+  .ruleta-img {
+    width: 260px;
+  }
 }
