@@ -1,34 +1,27 @@
 <?php
 session_start();
-require_once "conexion.php";
+require_once 'db.php';
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $email = trim($_POST["email"]);
-    $password = trim($_POST["password"]);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT id, nombre, password FROM usuarios WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
+    try {
+        $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email LIMIT 1");
+        $stmt->execute([':email' => $email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $nombre, $hash);
-        $stmt->fetch();
-
-        if (password_verify($password, $hash)) {
-            // Guardar sesión
-            $_SESSION["usuario_id"] = $id;
-            $_SESSION["usuario_nombre"] = $nombre;
-
-            echo "<script>alert('Inicio de sesión correcto'); window.location.href='../index.html';</script>";
+        if ($user && password_verify($password, $user['password'])) {
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_email'] = $user['email'];
+            header("Location: ../index.html"); // redirige al inicio tras login
         } else {
-            echo "<script>alert('Contraseña incorrecta'); window.history.back();</script>";
+            $_SESSION['error'] = "Correo o contraseña incorrectos.";
+            header("Location: ../html/login.html");
         }
-    } else {
-        echo "<script>alert('Usuario no encontrado'); window.history.back();</script>";
+    } catch (PDOException $e) {
+        $_SESSION['error'] = "Error en el servidor. Inténtalo más tarde.";
+        header("Location: ../html/login.html");
     }
-
-    $stmt->close();
 }
-$conn->close();
 ?>

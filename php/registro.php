@@ -1,43 +1,48 @@
 <?php
-require_once "conexion.php";
+session_start();
+require_once 'db.php'; // archivo con conexión PDO
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $nombre = trim($_POST["nombre"]);
-    $email = trim($_POST["email"]);
-    $password = trim($_POST["password"]);
-    $confirm_password = trim($_POST["confirm_password"]);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirm_password'];
 
-    // Validación de contraseñas
-    if ($password !== $confirm_password) {
-        echo "<script>alert('Las contraseñas no coinciden'); window.history.back();</script>";
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['error'] = "Correo electrónico inválido.";
+        header("Location: ../html/registro.html");
         exit;
     }
 
-    // Comprobar si el email ya está registrado
-    $stmt = $conn->prepare("SELECT id FROM usuarios WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-        echo "<script>alert('Este correo ya está registrado'); window.history.back();</script>";
+    if (strlen($password) < 6) {
+        $_SESSION['error'] = "La contraseña debe tener al menos 6 caracteres.";
+        header("Location: ../html/registro.html");
         exit;
     }
 
-    $stmt->close();
-
-    // Insertar nuevo usuario
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    $stmt = $conn->prepare("INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $nombre, $email, $hashed_password);
-
-    if ($stmt->execute()) {
-        echo "<script>alert('Registro exitoso. Ahora puedes iniciar sesión'); window.location.href='../login/login.html';</script>";
-    } else {
-        echo "<script>alert('Error al registrar usuario'); window.history.back();</script>";
+    if ($password !== $confirmPassword) {
+        $_SESSION['error'] = "Las contraseñas no coinciden.";
+        header("Location: ../html/registro.html");
+        exit;
     }
 
-    $stmt->close();
+    // Hasheamos la contraseña
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    try {
+        $stmt = $pdo->prepare("INSERT INTO usuarios (email, password) VALUES (:email, :password)");
+        $stmt->execute([
+            ':email' => $email,
+            ':password' => $hashedPassword
+        ]);
+        $_SESSION['success'] = "Cuenta creada correctamente. Por favor inicia sesión.";
+        header("Location: ../html/login.html");
+    } catch (PDOException $e) {
+        if ($e->getCode() == 23000) { // email duplicado
+            $_SESSION['error'] = "El correo electrónico ya está registrado.";
+        } else {
+            $_SESSION['error'] = "Error en el servidor. Inténtalo más tarde.";
+        }
+        header("Location: ../html/registro.html");
+    }
 }
-$conn->close();
 ?>
