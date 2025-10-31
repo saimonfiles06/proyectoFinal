@@ -3,7 +3,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db = "granCasino"; // Cambia por el nombre de tu BD
+$db = "grancasino"; // Cambia por el nombre de tu BD
 
 $conn = new mysqli($host, $user, $pass, $db);
 
