@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$dbname = "gran_casino";
+$dbname = "grancasino";
 $user = "root";
 $pass = "";
 
