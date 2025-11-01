@@ -1,44 +1,52 @@
 let numeroSeleccionado = null;
 
-// Selección de número
-document.querySelectorAll('.numero-ruleta').forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Quitar clase de todos
-    document.querySelectorAll('.numero-ruleta').forEach(b => b.classList.remove('btn-success'));
-    // Marcar el seleccionado
-    btn.classList.add('btn-success');
-    numeroSeleccionado = parseInt(btn.dataset.num);
-  });
-});
+const btnSeleccionar = document.getElementById('btn-seleccionar');
+const btnGirar = document.getElementById('btn-girar');
+const numeroInput = document.getElementById('numero-ruleta');
+const numeroMostrado = document.getElementById('numero-seleccionado');
+const resultado = document.getElementById('resultado-ruleta');
+const ruletaImg = document.getElementById('ruleta');
 
-// Botón "Seleccionar nº"
-document.getElementById('btn-seleccionar-num').addEventListener('click', () => {
-  if (numeroSeleccionado !== null) {
-    alert(`Número seleccionado: ${numeroSeleccionado}`);
+// Guardar el número seleccionado
+btnSeleccionar.addEventListener('click', () => {
+  const val = parseInt(numeroInput.value);
+  if (val >= 0 && val <= 36) {
+    numeroSeleccionado = val;
+    numeroMostrado.textContent = `Número seleccionado: ${numeroSeleccionado}`;
+    resultado.textContent = '';
   } else {
-    alert('Selecciona un número primero.');
+    alert('Introduce un número válido entre 0 y 36');
   }
 });
 
-// Botón "Girar Ruleta"
-document.getElementById('btn-girar-ruleta').addEventListener('click', () => {
+// Función para girar la ruleta con aceleración y deceleración
+btnGirar.addEventListener('click', () => {
   if (numeroSeleccionado === null) {
-    alert('Selecciona un número antes de girar la ruleta.');
+    alert('Selecciona primero un número');
     return;
   }
 
-  // Generamos un número aleatorio 0-36
-  const numeroGanador = Math.floor(Math.random() * 37);
+  // Número ganador aleatorio
+  const numeroResultado = Math.floor(Math.random() * 37); // 0-36
 
-  // Mostramos el resultado
-  const resultadoText = numeroGanador === numeroSeleccionado
-    ? `¡Has ganado! La bola cayó en ${numeroGanador}.`
-    : `Has perdido. La bola cayó en ${numeroGanador}.`;
-  
-  document.getElementById('resultado-ruleta').textContent = resultadoText;
+  // Calcular rotación final en sentido horario
+  const girosCompletos = 8 + Math.random() * 4; // 8-12 giros completos
+  const anguloFinal = (numeroResultado / 37) * 360;
+  const rotacionTotal = girosCompletos * 360 + anguloFinal;
 
-  // (Opcional) animar la ruleta girando con CSS
-  const ruletaImg = document.getElementById('ruleta-img');
-  ruletaImg.style.transition = 'transform 2s ease-out';
-  ruletaImg.style.transform = `rotate(${Math.random()*720 + 720}deg)`;
+  // Animación usando keyframes con aceleración inicial y deceleración
+  ruletaImg.style.transition = 'none';
+  ruletaImg.style.transform = 'rotate(0deg)';
+
+  requestAnimationFrame(() => {
+    ruletaImg.style.transition = 'transform 5s cubic-bezier(0.55, 0, 0.1, 1)'; // aceleración al inicio y deceleración al final
+    ruletaImg.style.transform = `rotate(${rotacionTotal}deg)`;
+  });
+
+  // Mostrar resultado después de la animación
+  setTimeout(() => {
+    resultado.textContent = numeroResultado === numeroSeleccionado 
+      ? `¡Ha salido el ${numeroResultado}! ¡Has ganado!` 
+      : `Ha salido el ${numeroResultado}, has perdido.`;
+  }, 5100); // Un poquito más que la duración de la animación
 });

@@ -110,9 +110,9 @@ header {
   border-radius: 50%;
   border: 5px solid #c9a23f;
   box-shadow: 0 0 20px rgba(201, 162, 63, 0.4);
-  max-height: 300px;
-  object-fit: cover;
+  transition: transform 3s ease-out;
 }
+
 
 .botones-ruleta {
   display: flex;
@@ -187,9 +187,7 @@ header {
 
 .btn-blackjack:hover {
   background-color: #e1be58;
-}
-
-/* ===== Tragaperras ===== */
+}/* ===== Tragaperras ===== */
 .slots-game-area {
   display: flex;
   justify-content: space-between;
@@ -210,11 +208,12 @@ header {
   color: #c9a23f;
 }
 
+/* 🎰 INTERFAZ PRINCIPAL DE LOS SLOTS */
 .slots-interface {
   flex: 1;
-  min-width: 200px;
-  max-width: 400px;
-  height: 200px;
+  min-width: 300px;
+  max-width: 500px;
+  height: 250px;
   background-color: #111;
   border: 5px solid #c9a23f;
   border-radius: 15px;
@@ -224,7 +223,52 @@ header {
   align-items: center;
   color: #c9a23f;
   font-size: 1.2rem;
-  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* 🎡 CONTENEDOR DE LOS REELS */
+.reels {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* 🎰 CADA REEL ocupa exactamente 1/3 del ancho de la interfaz */
+.reel {
+  flex: 1 1 33.333%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  border-right: 2px solid rgba(201, 162, 63, 0.3);
+  box-sizing: border-box;
+}
+
+.reel:last-child {
+  border-right: none;
+}
+
+/* ✨ Efecto de parpadeo cuando se gana */
+.reel.ganador {
+  animation: brillo 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes brillo {
+  from {
+    color: #c9a23f;
+    text-shadow: 0 0 10px #c9a23f;
+  }
+  to {
+    color: #fff;
+    text-shadow: 0 0 20px #fff;
+  }
 }
 
 .slots-winnings {
@@ -240,7 +284,7 @@ header {
   font-weight: bold;
 }
 
-/* Botones tragaperras */
+/* 🎮 Botones y selector de apuesta */
 .botones-slots-container {
   display: flex;
   flex-direction: column;
@@ -256,39 +300,45 @@ header {
   width: 100%;
 }
 
-.botones-col {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.botones-col.explicacion {
-  max-width: 300px;
-}
-
-.botones-col.tragaperras {
-  max-width: 400px;
-}
-
-.botones-col.ganancias {
-  max-width: 250px;
-}
-
-.btn-slots {
-  width: 100%;
+.btn-slots,
+#apuesta-selector {
+  flex: 1;
   background-color: #c9a23f;
   color: #0a0a0a;
   font-weight: bold;
   border: none;
   border-radius: 10px;
   padding: 12px;
-  transition: background-color 0.3s;
   text-align: center;
+  transition: background-color 0.3s;
 }
 
-.btn-slots:hover {
+/* 🎰 Selector de apuesta (mantiene los colores dorados y el estilo desplegable nativo) */
+#apuesta-selector {
+  flex: 1;
+  appearance: auto; /* 👈 Muestra el desplegable nativo */
+  -webkit-appearance: menulist; /* Para Safari/Chrome */
+  -moz-appearance: menulist; /* Para Firefox */
+  background-color: #c9a23f;
+  color: #0a0a0a;
+  padding: 12px;
+  border: 2px solid #c9a23f;
+  border-radius: 10px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+#apuesta-selector:hover {
   background-color: #e1be58;
 }
+
+#apuesta-selector:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(201, 162, 63, 0.7);
+}
+
 
 /* ===== Carrera de Caballos ===== */
 .carrera-game-area {

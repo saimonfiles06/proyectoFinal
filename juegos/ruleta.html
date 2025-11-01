@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es-ES">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
   <link rel="stylesheet" href="../css/estilos.css">
   <link rel="shortcut icon" href="../img/ruleta.png" type="image/x-icon">
 </head>
+
 <body>
   <header class="d-flex justify-content-between align-items-center p-3">
     <a href="../index.html" class="navbar-brand">
@@ -16,51 +18,53 @@
     </a>
     <img src="../img/ruleta.png" alt="Ruleta de Gran Casino" class="header-ruleta img-fluid">
   </header>
- <h1 class="titulo mb-4 text-center">Ruleta</h1>
-    <p class="text-light mb-5 text-center">¡Haz tus apuestas y gira la ruleta para probar tu suerte!</p>
+  <h1 class="titulo mb-4 text-center">Ruleta</h1>
+  <p class="text-light mb-5 text-center">¡Haz tus apuestas y gira la ruleta para probar tu suerte!</p>
 
-    <div class="main-ruleta">
-      <!-- Tapete con números -->
-      <div class="tapete">
-        <h3 class="text-gold mb-3">Tapete</h3>
-        <p>Aquí aparecerán los números de apuesta.</p>
-      </div>
-
-      <!-- Ruleta e interacción -->
-      <div class="ruleta-container">
-        <img src="../img/ruleta.png" alt="Ruleta" class="ruleta-img">
-        <div class="botones-ruleta mt-3">
-          <button class="btn-ruleta">Seleccionar nº</button>
-          <button class="btn-ruleta">Girar ruleta</button>
-          <button class="btn-ruleta">Recargar $</button>
-        </div>
-      </div>
+  <div class="main-ruleta">
+    <!-- Tapete -->
+    <div class="tapete">
+      <label for="numero-ruleta">Selecciona tu número:</label>
+      <input type="number" id="numero-ruleta" min="0" max="36" value="0">
+      <button class="btn-ruleta mt-2" id="btn-seleccionar">Seleccionar nº</button>
+      <p id="numero-seleccionado">Número seleccionado: -</p>
     </div>
+
+    <!-- Ruleta -->
+    <div class="ruleta-container">
+      <img src="../img/ruleta.png" alt="Ruleta" class="ruleta-img" id="ruleta">
+      <button class="btn-ruleta mt-3" id="btn-girar">Girar Ruleta</button>
+      <p id="resultado-ruleta" class="mt-2 fw-bold"></p>
+    </div>
+  </div>
+
   </main>
 
 
 </body>
-  <footer class="footer mt-5">
-    <div class="container py-4">
-      <div class="row text-center text-md-start align-items-center">
-        <div class="col-md-4 mb-3 mb-md-0">
-          <p class="mb-0">© 2025 Gran Casino Uganda / Valencia. Todos los derechos reservados.</p>
-        </div>
-        <div class="col-md-4 mb-3 mb-md-0 text-center">
-          <ul class="list-unstyled mb-0">
-            <li><a href="/legal/aviso-legal.html">Aviso Legal</a></li>
-            <li><a href="/legal/privacidad.html">Política de Privacidad</a></li>
-            <li><a href="/legal/terminos.html">Términos de Uso</a></li>
-          </ul>
-        </div>
-        <div class="col-md-4 text-md-end text-center">
-          <p class="mb-0 correo-footer">
-            <i class="fa-solid fa-envelope"></i> 
-            <a href="mailto:contacto@grancasinovalencia.com">contacto@grancasinovalencia.com</a>
-          </p>
-        </div>
+<footer class="footer mt-5">
+  <div class="container py-4">
+    <div class="row text-center text-md-start align-items-center">
+      <div class="col-md-4 mb-3 mb-md-0">
+        <p class="mb-0">© 2025 Gran Casino Uganda / Valencia. Todos los derechos reservados.</p>
+      </div>
+      <div class="col-md-4 mb-3 mb-md-0 text-center">
+        <ul class="list-unstyled mb-0">
+          <li><a href="/legal/aviso-legal.html">Aviso Legal</a></li>
+          <li><a href="/legal/privacidad.html">Política de Privacidad</a></li>
+          <li><a href="/legal/terminos.html">Términos de Uso</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 text-md-end text-center">
+        <p class="mb-0 correo-footer">
+          <i class="fa-solid fa-envelope"></i>
+          <a href="mailto:contacto@grancasinovalencia.com">contacto@grancasinovalencia.com</a>
+        </p>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
+<!-- Script de funcionalidad -->
+<script src="../js/ruleta.js"></script>
+
 </html>
- 

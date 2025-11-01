@@ -20,7 +20,7 @@
 
   <main class="container text-center">
     <h1 class="titulo mb-4 mt-4">Tragaperras</h1>
-    <p class="text-light mb-5">¡Gira y gana si consigues tres símbolos iguales!</p>
+    <p class="text-light mb-4">¡Gira y gana si consigues tres símbolos iguales!</p>
 
     <!-- Zona principal -->
     <div class="slots-game-area">
@@ -30,27 +30,38 @@
       </div>
 
       <!-- Interfaz de los reels -->
-      <div class="slots-interface" id="slot-reels">
-        🍒 🍋 🍉
+      <div class="slots-interface d-flex justify-content-center align-items-center" id="slot-reels">
+        <div class="reel" id="reel1">🍒</div>
+        <div class="reel" id="reel2">🍋</div>
+        <div class="reel" id="reel3">🍉</div>
       </div>
 
       <!-- Ganancias -->
       <div class="slots-winnings">
-        Ganancias: $<span id="slot-ganancias">0</span>
+        Ganancias: $<span id="slot-ganancias">100</span>
       </div>
     </div>
 
-    <!-- Botones -->
+    <!-- Botones y selector de apuesta -->
     <div class="botones-slots-container">
       <div class="botones-fila">
-        <div class="botones-col tragaperras">
-          <button class="btn-slots" id="slot-spin">Girar</button>
-        </div>
-        <div class="botones-col tragaperras">
-          <button class="btn-slots" id="slot-repetir">Repetir apuesta</button>
-        </div>
+        <!-- Selector de apuesta -->
+        <select id="apuesta-selector">
+          <option value="5">$5</option>
+          <option value="10" selected>$10</option>
+          <option value="20">$20</option>
+          <option value="50">$50</option>
+          <option value="100">$100</option>
+        </select>
+
+        <!-- Botón Girar -->
+        <button class="btn-slots" id="slot-spin">Girar</button>
+
+        <!-- Botón Repetir apuesta -->
+        <button class="btn-slots" id="slot-repetir">Repetir apuesta</button>
       </div>
     </div>
+
   </main>
 
   <footer class="footer mt-5">

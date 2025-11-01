@@ -1,31 +1,70 @@
-const reels = ["🍒", "🍋", "🍉", "🍇", "⭐"];
-const slotReels = document.getElementById("slot-reels");
-const slotGanancias = document.getElementById("slot-ganancias");
-const slotApuesta = document.getElementById("slot-apuesta");
+document.addEventListener("DOMContentLoaded", () => {
+  const reel1 = document.getElementById("reel1");
+  const reel2 = document.getElementById("reel2");
+  const reel3 = document.getElementById("reel3");
+  const spinButton = document.getElementById("slot-spin");
+  const repeatButton = document.getElementById("slot-repetir");
+  const apuestaDisplay = document.getElementById("slot-apuesta");
+  const gananciasDisplay = document.getElementById("slot-ganancias");
+  const apuestaSelector = document.getElementById("apuesta-selector");
 
-let apuesta = 10;
-let ganancias = 0;
+  const symbols = ["🍒", "🍋", "🍉", "🍇", "⭐", "🔔", "7️⃣"];
+  let apuesta = 10;
+  let ganancias = 100; // saldo inicial del jugador
 
-document.getElementById("slot-spin").addEventListener("click", () => {
-  const resultado = [];
-  for (let i = 0; i < 3; i++) {
-    const randomIndex = Math.floor(Math.random() * reels.length);
-    resultado.push(reels[randomIndex]);
-  }
+  // Actualiza visualmente la apuesta
+  apuestaSelector.addEventListener("change", (e) => {
+    apuesta = parseInt(e.target.value);
+    apuestaDisplay.textContent = apuesta;
+  });
 
-  slotReels.textContent = resultado.join(" ");
+  // Función principal: girar los reels
+  const girar = () => {
+    if (ganancias < apuesta) {
+      alert("No tienes suficiente saldo para apostar esa cantidad.");
+      return;
+    }
 
-  // Resultado simple: si los 3 símbolos son iguales, ganas el triple de la apuesta
-  if (resultado[0] === resultado[1] && resultado[1] === resultado[2]) {
-    ganancias = apuesta * 3;
-  } else {
-    ganancias = 0;
-  }
+    // Restar la apuesta
+    ganancias -= apuesta;
+    actualizarGanancias();
 
-  slotGanancias.textContent = ganancias;
-});
+    // Simular el giro
+    const simbolo1 = symbols[Math.floor(Math.random() * symbols.length)];
+    const simbolo2 = symbols[Math.floor(Math.random() * symbols.length)];
+    const simbolo3 = symbols[Math.floor(Math.random() * symbols.length)];
 
-document.getElementById("slot-repetir").addEventListener("click", () => {
-  slotReels.textContent = reels.slice(0, 3).join(" ");
-  slotGanancias.textContent = "0";
+    reel1.textContent = simbolo1;
+    reel2.textContent = simbolo2;
+    reel3.textContent = simbolo3;
+
+    // Limpiar efectos previos
+    [reel1, reel2, reel3].forEach(r => r.classList.remove("ganador"));
+
+    // Comprobar si ganó
+    if (simbolo1 === simbolo2 && simbolo2 === simbolo3) {
+      const premio = apuesta * 5;
+      ganancias += premio;
+      actualizarGanancias();
+      [reel1, reel2, reel3].forEach(r => r.classList.add("ganador"));
+    }
+  };
+
+  // Repetir la última apuesta
+  const repetir = () => {
+    girar();
+  };
+
+  // Actualizar saldo
+  const actualizarGanancias = () => {
+    gananciasDisplay.textContent = ganancias;
+  };
+
+  // Eventos
+  spinButton.addEventListener("click", girar);
+  repeatButton.addEventListener("click", repetir);
+
+  // Inicialización
+  apuestaDisplay.textContent = apuesta;
+  gananciasDisplay.textContent = ganancias;
 });
