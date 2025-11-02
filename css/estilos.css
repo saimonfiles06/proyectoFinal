@@ -187,7 +187,65 @@ header {
 
 .btn-blackjack:hover {
   background-color: #e1be58;
-}/* ===== Tragaperras ===== */
+}
+/* ===== MARCADOR DE BLACKJACK ===== */
+.marcador-blackjack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.marcador-item {
+  background-color: #111;
+  border: 3px solid #c9a23f;
+  border-radius: 15px;
+  padding: 12px 25px;
+  color: #c9a23f;
+  font-weight: bold;
+  font-size: 1.2rem;
+  box-shadow: 0 0 10px rgba(201, 162, 63, 0.3);
+}
+
+.marcador-item.jugador {
+  border-color: #00b050;
+  color: #00ff66;
+}
+
+.marcador-item.dealer {
+  border-color: #b00000;
+  color: #ff6666;
+}
+
+.marcador-item.empates {
+  border-color: #c9a23f;
+  color: #ffd700;
+  background-color: #1a1a1a;
+}
+
+.marcador-item span {
+  font-size: 1.5rem;
+  margin-left: 8px;
+}
+
+/* ===== CARTAS ===== */
+.carta {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #c9a23f;
+  border-radius: 8px;
+  width: 50px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* ===== Tragaperras ===== */
 .slots-game-area {
   display: flex;
   justify-content: space-between;
