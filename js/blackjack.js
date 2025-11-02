@@ -1,24 +1,28 @@
-// === VARIABLES GLOBALES ===
+// ===== VARIABLES PRINCIPALES =====
 let mazo = [];
-let manoJugador = [];
-let manoDealer = [];
-let juegoTerminado = false;
-let scoreJugador = 0;
-let scoreDealer = 0;
+let puntosJugador = 0;
+let puntosDealer = 0;
 
-// === REFERENCIAS A ELEMENTOS ===
+let victoriasJugador = 0;
+let victoriasDealer = 0;
+let empates = 0;
+
 const btnRepartir = document.getElementById('btn-repartir');
 const btnPedir = document.getElementById('btn-pedir');
 const btnPlantarse = document.getElementById('btn-plantarse');
-const cartasJugadorElem = document.getElementById('cartas-jugador');
-const cartasDealerElem = document.getElementById('cartas-dealer');
+const resultado = document.getElementById('resultado-blackjack');
+
+const cartasJugador = document.getElementById('cartas-jugador');
+const cartasDealer = document.getElementById('cartas-dealer');
 const puntosJugadorElem = document.getElementById('puntos-jugador');
 const puntosDealerElem = document.getElementById('puntos-dealer');
-const resultadoElem = document.getElementById('resultado-blackjack');
-const scoreJugadorElem = document.getElementById('score-jugador');
-const scoreDealerElem = document.getElementById('score-dealer');
 
-// === FUNCIONES AUXILIARES ===
+// Marcadores
+const marcadorJugador = document.getElementById('score-jugador');
+const marcadorDealer = document.getElementById('score-dealer');
+const marcadorEmpates = document.getElementById('score-empates');
+
+// ===== FUNCIONES =====
 function crearMazo() {
   const palos = ['♠', '♥', '♦', '♣'];
   const valores = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
@@ -30,7 +34,7 @@ function crearMazo() {
     }
   }
 
-  // Barajar mazo
+  // Mezclar
   mazo.sort(() => Math.random() - 0.5);
 }
 
@@ -40,109 +44,110 @@ function valorCarta(carta) {
   return parseInt(carta.valor);
 }
 
-function calcularPuntos(mano) {
-  let total = 0;
-  let ases = 0;
-
-  for (let carta of mano) {
-    total += valorCarta(carta);
-    if (carta.valor === 'A') ases++;
-  }
-
-  // Ajustar ases si se pasa de 21
-  while (total > 21 && ases > 0) {
-    total -= 10;
-    ases--;
-  }
-
-  return total;
+function tieneAs(cartasContenedor) {
+  return Array.from(cartasContenedor.children).some(c => c.textContent.includes('A'));
 }
 
-function mostrarManos() {
-  cartasJugadorElem.innerHTML = '';
-  cartasDealerElem.innerHTML = '';
+function agregarCarta(destino) {
+  const carta = mazo.pop();
+  const valor = valorCarta(carta);
 
-  manoJugador.forEach(carta => {
-    const div = document.createElement('div');
-    div.className = 'carta';
-    div.textContent = `${carta.valor}${carta.palo}`;
-    cartasJugadorElem.appendChild(div);
-  });
+  const cartaDiv = document.createElement('div');
+  cartaDiv.classList.add('carta');
+  cartaDiv.textContent = `${carta.valor}${carta.palo}`;
 
-  manoDealer.forEach(carta => {
-    const div = document.createElement('div');
-    div.className = 'carta';
-    div.textContent = `${carta.valor}${carta.palo}`;
-    cartasDealerElem.appendChild(div);
-  });
-
-  puntosJugadorElem.textContent = calcularPuntos(manoJugador);
-  puntosDealerElem.textContent = calcularPuntos(manoDealer);
-}
-
-function finalizarPartida(resultado) {
-  juegoTerminado = true;
-
-  if (resultado === 'jugador') {
-    scoreJugador++;
-    resultadoElem.textContent = '🎉 ¡Has ganado!';
-  } else if (resultado === 'dealer') {
-    scoreDealer++;
-    resultadoElem.textContent = '💀 Has perdido, gana el dealer.';
+  if (destino === 'jugador') {
+    cartasJugador.appendChild(cartaDiv);
+    puntosJugador += valor;
+    if (puntosJugador > 21 && tieneAs(cartasJugador)) {
+      puntosJugador -= 10;
+    }
+    puntosJugadorElem.textContent = puntosJugador;
   } else {
-    resultadoElem.textContent = '🤝 Empate.';
+    cartasDealer.appendChild(cartaDiv);
+    puntosDealer += valor;
+    if (puntosDealer > 21 && tieneAs(cartasDealer)) {
+      puntosDealer -= 10;
+    }
+    puntosDealerElem.textContent = puntosDealer;
   }
-
-  scoreJugadorElem.textContent = scoreJugador;
-  scoreDealerElem.textContent = scoreDealer;
 }
 
-// === LÓGICA PRINCIPAL ===
+function actualizarMarcador(resultadoRonda) {
+  if (resultadoRonda === 'jugador') {
+    victoriasJugador++;
+    marcadorJugador.textContent = victoriasJugador;
+    animarMarcador(marcadorJugador, 'verde');
+  } else if (resultadoRonda === 'dealer') {
+    victoriasDealer++;
+    marcadorDealer.textContent = victoriasDealer;
+    animarMarcador(marcadorDealer, 'rojo');
+  } else if (resultadoRonda === 'empate') {
+    empates++;
+    marcadorEmpates.textContent = empates;
+    animarMarcador(marcadorEmpates, 'dorado');
+  }
+}
+
+function animarMarcador(elemento, color) {
+  elemento.classList.add(`parpadeo-${color}`);
+  setTimeout(() => {
+    elemento.classList.remove(`parpadeo-${color}`);
+  }, 800);
+}
+
+function determinarGanador() {
+  // Esperar un instante si el dealer acaba de robar
+  setTimeout(() => {
+    if (puntosJugador > 21) {
+      resultado.textContent = 'Te pasaste de 21. Gana el dealer.';
+      actualizarMarcador('dealer');
+    } else if (puntosDealer > 21) {
+      resultado.textContent = 'El dealer se pasó. ¡Ganas tú!';
+      actualizarMarcador('jugador');
+    } else if (puntosJugador > puntosDealer) {
+      resultado.textContent = '¡Ganas tú!';
+      actualizarMarcador('jugador');
+    } else if (puntosJugador < puntosDealer) {
+      resultado.textContent = 'Gana el dealer.';
+      actualizarMarcador('dealer');
+    } else {
+      resultado.textContent = 'Empate.';
+      actualizarMarcador('empate');
+    }
+  }, 300);
+}
+
+// ===== EVENTOS =====
 btnRepartir.addEventListener('click', () => {
   crearMazo();
-  manoJugador = [];
-  manoDealer = [];
-  juegoTerminado = false;
-  resultadoElem.textContent = '';
+  cartasJugador.innerHTML = '';
+  cartasDealer.innerHTML = '';
+  resultado.textContent = '';
 
-  // Repartir 2 cartas a cada uno
-  manoJugador.push(mazo.pop(), mazo.pop());
-  manoDealer.push(mazo.pop(), mazo.pop());
+  puntosJugador = 0;
+  puntosDealer = 0;
 
-  mostrarManos();
+  puntosJugadorElem.textContent = 0;
+  puntosDealerElem.textContent = 0;
 
-  // Mostrar línea de puntos del dealer
-  puntosDealerElem.insertAdjacentHTML('afterend', '<hr class="mt-2 mb-2" style="border-color: #c9a23f;">');
-
-  const puntosJugador = calcularPuntos(manoJugador);
-  if (puntosJugador === 21) finalizarPartida('jugador');
+  agregarCarta('jugador');
+  agregarCarta('dealer');
+  agregarCarta('jugador');
 });
 
 btnPedir.addEventListener('click', () => {
-  if (juegoTerminado) return;
-
-  manoJugador.push(mazo.pop());
-  mostrarManos();
-
-  const puntosJugador = calcularPuntos(manoJugador);
-  if (puntosJugador > 21) finalizarPartida('dealer');
+  if (puntosJugador < 21) {
+    agregarCarta('jugador');
+  }
+  if (puntosJugador >= 21) {
+    determinarGanador();
+  }
 });
 
 btnPlantarse.addEventListener('click', () => {
-  if (juegoTerminado) return;
-
-  // Dealer juega hasta 17 o más
-  while (calcularPuntos(manoDealer) < 17) {
-    manoDealer.push(mazo.pop());
+  while (puntosDealer < 17) {
+    agregarCarta('dealer');
   }
-
-  mostrarManos();
-
-  const puntosJugador = calcularPuntos(manoJugador);
-  const puntosDealer = calcularPuntos(manoDealer);
-
-  if (puntosDealer > 21 || puntosJugador > puntosDealer) finalizarPartida('jugador');
-  else if (puntosDealer > puntosJugador) finalizarPartida('dealer');
-  else finalizarPartida('empate');
+  determinarGanador();
 });
-  
