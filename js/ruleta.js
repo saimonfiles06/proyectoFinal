@@ -7,6 +7,9 @@ const resultado = document.getElementById('resultado-ruleta');
 const ruletaImg = document.getElementById('ruleta');
 const tapete = document.getElementById('numeros-tapete');
 
+const duracionGiro = 5000; // duración en ms
+const vueltasCompletas = 6; // vueltas completas por tirada
+
 // ===== GENERAR NÚMEROS DEL TAPETE =====
 for (let i = 0; i <= 36; i++) {
   const celda = document.createElement('div');
@@ -40,16 +43,32 @@ btnGirar.addEventListener('click', () => {
     return;
   }
 
-  // Girar solo en sentido horario
-  const rotacion = 360 * 6 + Math.floor(Math.random() * 360);
-  ruletaImg.style.transition = 'transform 4s cubic-bezier(0.1, 0.7, 0.1, 1)';
-  ruletaImg.style.transform = `rotate(${rotacion}deg)`;
+  // Elegir número ganador
+  const numeroGanador = Math.floor(Math.random() * 37);
 
+  // Cada número ocupa un ángulo de 360 / 37 grados
+  const anguloPorNumero = 360 / 37;
+
+  // Calcular rotación final para el número ganador (siempre con las mismas vueltas)
+  const rotacionFinal = vueltasCompletas * 360 + numeroGanador * anguloPorNumero;
+
+  // Aplicar animación con velocidad constante
+  ruletaImg.style.transition = `transform ${duracionGiro / 1000}s cubic-bezier(0.33, 1, 0.68, 1)`;
+  ruletaImg.style.transform = `rotate(${rotacionFinal}deg)`;
+
+  // Después de girar, reiniciamos la rotación para la próxima tirada
   setTimeout(() => {
-    const numeroGanador = Math.floor(Math.random() * 37);
+    // Quitar transición temporalmente para "reiniciar" sin animación
+    ruletaImg.style.transition = 'none';
+    // Ajustar rotación al número ganador real (mod 360)
+    ruletaImg.style.transform = `rotate(${numeroGanador * anguloPorNumero}deg)`;
+    // Forzar reflow para aplicar la transición la próxima vez
+    void ruletaImg.offsetWidth;
+
+    // Mostrar resultado
     resultado.textContent =
       numeroGanador === numeroSeleccionado
         ? `🎉 ¡Has ganado! Salió el ${numeroGanador}.`
         : `Ha salido el ${numeroGanador}. Inténtalo de nuevo.`;
-  }, 4200);
+  }, duracionGiro + 200); // un poco más que la duración del giro
 });
