@@ -577,6 +577,19 @@ header {
   min-height: 200px;
   flex-direction: column;
 }
+.caballo {
+  background-color: #c9a23f;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: left 0.2s linear;
+}
 
 .btn-carrera {
   width: 100%;
