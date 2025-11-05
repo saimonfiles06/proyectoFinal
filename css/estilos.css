@@ -78,7 +78,6 @@ header {
   transform: translateY(-5px);
   box-shadow: 0 0 20px rgba(201, 162, 63, 0.4);
 }
-
 /* ===== Ruleta ===== */
 .main-ruleta {
   display: flex;
@@ -165,6 +164,7 @@ header {
   box-shadow: 0 0 20px rgba(201, 162, 63, 0.4);
   transition: transform 4s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
+
 .ruleta-wrapper {
   display: flex;
   justify-content: center;
@@ -206,11 +206,16 @@ header {
   background-color: #111;
   border-radius: 8px;
   text-align: center;
+  border-color: gold;
 }
+
 #resultado-lateral {
-  border: 5px solid #c9a23f;
-  border-radius: 50%;
-  box-shadow: 0 0 20px rgba(201, 162, 63, 0.4);
+  min-width: 150px;
+  padding: 10px;
+  background-color: #111;
+  border-radius: 8px;
+  border-color: gold;
+  text-align: center;
 }
 
 /* 🎰 Botones ruleta */
