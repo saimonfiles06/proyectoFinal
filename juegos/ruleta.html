@@ -21,31 +21,32 @@
     <h1 class="titulo mb-4">Ruleta</h1>
     <p class="text-light mb-3">Elige un número del 0 al 36, ¡y prueba tu suerte!</p>
 
-    <!-- Imagen de la ruleta -->
-    <div class="ruleta-container">
-      <img src="../img/ruleta.png" alt="Ruleta" id="ruleta" class="img-fluid">
-    </div>
-    <div class="ruleta-wrapper d-flex justify-content-center align-items-start gap-4 mt-4">
-      <!-- TAPETE -->
+    <div class="main-ruleta">
+
+      <!-- ==== TAPETE IZQUIERDA ==== -->
       <div class="tapete">
-        <div id="numeros-tapete" class="numeros-tapete"></div>
+        <h3>Tapete</h3>
+        <div class="numeros-tapete" id="numeros-tapete">
+          <!-- Números generados por JS -->
+        </div>
       </div>
 
-      <!-- PANEL DE RESULTADOS -->
-      <div class="resultado-lateral text-light" id="resultado-lateral">
-        <h5>Tu selección</h5>
-        <p id="numero-seleccionado">-</p>
+      <!-- ==== PANEL CENTRAL ==== -->
+      <div class="resultado-lateral">
+        <div id="numero-seleccionado">Número seleccionado: -</div>
+        <div id="resultado-ruleta">Número ganador: -</div>
 
-        <h5>Número premiado</h5>
-        <p id="resultado-ruleta">-</p>
+        <!-- Botones debajo del panel -->
+        <div class="botones-ruleta">
+          <button class="btn-ruleta" id="btn-seleccionar">Seleccionar número</button>
+          <button class="btn-ruleta" id="btn-girar">Girar ruleta</button>
+        </div>
       </div>
-    </div>
 
-
-    <!-- Controles -->
-    <div class="mt-4">
-      <button id="btn-seleccionar" class="btn btn-warning me-3">Seleccionar número</button>
-      <button id="btn-girar" class="btn btn-success">Girar ruleta</button>
+      <!-- ==== RULETA DERECHA ==== -->
+      <div class="ruleta-container">
+        <img src="../img/ruleta.png" alt="Ruleta" id="ruleta" class="img-fluid">
+      </div>
     </div>
   </main>
 

@@ -112,9 +112,9 @@ header {
 }
 
 .numero-celda {
-  width: 50px;
-  height: 50px;
-  background-color: #222;
+  width: 45px;
+  height: 45px;
+  background-color: #111;
   color: #fff;
   font-weight: bold;
   border-radius: 8px;
@@ -142,93 +142,100 @@ header {
   border-color: #c9a23f;
 }
 
-
-/* Wrapper principal: ruleta + tapete + panel */
-.ruleta-wrapper {
-  display: flex;
-  flex-direction: row;
-  /* fila horizontal */
-  align-items: flex-start;
-  justify-content: left;
-  gap: 40px;
-  /* separación entre columnas */
-  width: 100%;
-  margin-top: 30px;
-}
-
-/* Columna izquierda: ruleta */
+/* 🎡 RULETA */
 .ruleta-container {
-  flex: 0 0 300px;
-  /* ancho fijo */
+  flex: 1;
+  min-width: 250px;
+  max-width: 420px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 #ruleta {
-  width: 250px;
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+  max-width: 70%;
   height: auto;
   border: 5px solid #c9a23f;
   border-radius: 50%;
   box-shadow: 0 0 20px rgba(201, 162, 63, 0.4);
   transition: transform 4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.ruleta-wrapper {
   display: flex;
-  flex-direction: row;
-  /* fila horizontal */
+  justify-content: center;
   align-items: flex-start;
-  justify-content: left;
+  gap: 40px; /* espacio entre tapete y panel */
 }
 
-/* Columna central: tapete */
 .tapete {
-  flex: 1 1 400px;
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.numeros-tapete {
   display: grid;
   grid-template-columns: repeat(6, 50px);
-  gap: 8px;
-  justify-items: center;
+  gap: 5px;
 }
 
 .numero-celda {
   width: 50px;
   height: 50px;
-  font-size: 1rem;
-}
-
-/* Botones debajo del tapete */
-.botones-ruleta {
+  background-color: #222;
+  color: #fff;
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 5px;
+  user-select: none;
+}
+
+.numero-celda.seleccionado {
+  background-color: gold;
+  color: #000;
+}
+
+.zero {
+  background-color: red;
+}
+
+.resultado-lateral {
+  min-width: 150px;
+  padding: 10px;
+  background-color: #111;
+  border-radius: 8px;
+  text-align: center;
+}
+#resultado-lateral {
+  border: 5px solid #c9a23f;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(201, 162, 63, 0.4);
+}
+
+/* 🎰 Botones ruleta */
+.botones-ruleta {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
-  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 10px;
 }
 
 .btn-ruleta {
-  flex: 1 1 120px;
-  max-width: 150px;
+  flex: 1;
+  background-color: #c9a23f;
+  color: #0a0a0a;
+  font-weight: bold;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+  text-align: center;
 }
 
-/* Columna derecha: panel lateral de resultados */
-.resultado-lateral {
-  flex: 0 0 200px;
-  /* ancho fijo */
-  max-width: 200px;
-  background-color: #111;
-  border: 5px solid #c9a23f;
-  border-radius: 8px;
-  text-align: center;
-  padding: 15px;
-  color: #c9a23f;
-  box-shadow: 0 0 20px rgba(201, 162, 63, 0.4);
-  font-weight: bold;
+.btn-ruleta:hover {
+  background-color: #e1be58;
 }
 
 /* ===== Blackjack ===== */
@@ -603,46 +610,27 @@ header {
     gap: 20px;
   }
 
-  .main-ruleta,
-  .ruleta-wrapper {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
   .tapete {
-    min-width: 200px;
-    max-width: 90%;
+    width: 100%;
+    max-width: 350px;
+    padding: 15px;
   }
 
   .numeros-tapete {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
   }
 
   .numero-celda {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
     font-size: 0.9rem;
   }
 
   #ruleta {
-    width: 200px;
-  }
-
-  .resultado-lateral {
-    width: 90%;
-    max-width: 100%;
-    margin-top: 15px;
-  }
-
-  .botones-ruleta {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .btn-ruleta {
-    width: 100%;
+    width: 160px;
+    max-width: 80%;
+    margin: 0 auto;
   }
 
   /* ===== Botones ===== */
@@ -676,17 +664,26 @@ header {
   }
 
   /* ===== Cards ===== */
+  /* 3 por fila iguales */
   .card {
     flex: 1 1 calc(33.333% - 20px);
     max-width: calc(33.333% - 20px);
   }
 
+  /* Imagen de la card de carrera de caballos ajustada */
   .card img[src*="carrera"] {
     height: 220px;
     object-fit: cover;
     object-position: top center;
   }
 
+  /* Igualamos altura visual de todas las cards */
+  .card {
+    flex: 1 1 30%;
+    max-width: 30%;
+  }
+
+  /* Evita que las cards se rompan en filas desiguales */
   .row.cards {
     justify-content: center;
     gap: 20px;
@@ -701,53 +698,26 @@ header {
     gap: 25px;
   }
 
-  /* Wrapper de ruleta: tapete + ruleta + panel lateral en fila */
-  .ruleta-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 25px;
-    width: 100%;
+  .tapete,
+  .ruleta-container,
+  .slots-explanation,
+  .slots-interface,
+  .slots-winnings,
+  .carrera-columna {
+    flex: 1 1 50%;
+    max-width: 400px;
   }
 
-  /* Tapete */
-  .tapete {
-    flex: 1 1 40%;
-    max-width: 350px;
+  .numeros-tapete {
+    grid-template-columns: repeat(6, 1fr);
   }
 
-  /* Ruleta */
-  .ruleta-container {
-    flex: 1 1 30%;
-    max-width: 300px;
-  }
-
-  /* Panel lateral de resultados */
-  .resultado-lateral {
-    flex: 0 0 200px;
-    max-width: 200px;
-  }
-
-  /* Imagen de la ruleta */
   #ruleta {
-    width: 220px;
+    width: 190px;
     margin: 0 auto;
   }
 
-  /* Botones de ruleta */
-  .botones-ruleta {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
-    width: 100%;
-  }
-
-  .btn-ruleta {
-    flex: 1 1 45%;
-  }
-
-  /* ===== Botones generales ===== */
+  /* ===== Botones ===== */
   .botones-fila {
     flex-wrap: wrap;
     justify-content: center;
@@ -768,5 +738,10 @@ header {
   .btn-slots,
   .btn-carrera {
     font-size: 1rem;
+  }
+
+  /* ===== Ruleta ===== */
+  .ruleta-img {
+    width: 260px;
   }
 }
