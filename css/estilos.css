@@ -102,33 +102,48 @@ header {
   box-shadow: 0 0 20px rgba(201, 162, 63, 0.4);
 }
 
-.numeros-tapete {
+.numeros-tapete,
+#numeros-tapete {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 8px;
-  justify-items: center;
-  margin-top: 10px;
 }
 
+
 .numero-celda {
-  width: 45px;
-  height: 45px;
-  background-color: #111;
+  width: 50px;
+  height: 50px;
+  background-color: #222;
   color: #fff;
-  font-weight: bold;
-  border-radius: 8px;
-  border: 2px solid transparent;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  border-radius: 5px;
+  user-select: none;
 }
 
 .numero-celda.zero {
   background-color: green;
   grid-column: span 2;
 }
+
+.numero-celda.rojo {
+  background-color: #b30000;
+  color: #fff;
+}
+
+.numero-celda.negro {
+  background-color: #111;
+  color: #fff;
+}
+
+.numero-celda.zero {
+  background-color: green !important;
+  color: #fff;
+  grid-column: span 2;
+}
+
 
 .numero-celda:hover {
   background-color: #c9a23f;
@@ -178,18 +193,6 @@ header {
   gap: 5px;
 }
 
-.numero-celda {
-  width: 50px;
-  height: 50px;
-  background-color: #222;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 5px;
-  user-select: none;
-}
 
 .numero-celda.seleccionado {
   background-color: gold;

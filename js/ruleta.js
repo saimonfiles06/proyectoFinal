@@ -1,10 +1,10 @@
 // === ruleta.js ===
 (function () {
   const wheelNumbers = [
-    0,32,15,19,4,21,2,25,17,34,6,27,13,36,11,30,8,23,10,5,24,16,33,1,20,14,31,9,22,18,29,7,28,12,35,3,26
+    0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26
   ];
 
-  const redSet = new Set([32,19,21,25,17,34,27,36,30,23,5,16,1,14,9,18,7,12,3]);
+  const redSet = new Set([1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]);
   const blackSet = new Set(wheelNumbers.filter(n => n !== 0 && !redSet.has(n)));
 
   const ruletaEl = document.getElementById('ruleta');
@@ -20,29 +20,52 @@
   let currentRotation = 0;
   let spinning = false;
   let numeroSeleccionado = null;
-
-  // ===== Generar tapete =====
+  /* ---- TAPETE 6x6 (0 con span de 2 columnas) ---- */
   function crearTapete() {
-    tapeteEl.innerHTML = '';
-    for (let n = 0; n <= 36; n++) {
-      const celda = document.createElement('div');
-      celda.classList.add('numero-celda');
-      if (n === 0) celda.classList.add('zero');
+    tapeteEl.innerHTML = "";
+
+    tapeteEl.style.display = "grid";
+    tapeteEl.style.gridTemplateColumns = "repeat(6, 1fr)";
+    tapeteEl.style.gap = "8px";
+
+    // Número 0 (span 2)
+    const celda0 = document.createElement("div");
+    celda0.className = "numero-celda zero";
+    celda0.textContent = "0";
+    celda0.style.gridColumn = "span 2";
+    tapeteEl.appendChild(celda0);
+
+    // Crear números 1-36
+    for (let n = 1; n <= 36; n++) {
+      const celda = document.createElement("div");
+      celda.className = "numero-celda";
       celda.textContent = n;
 
-      celda.addEventListener('click', () => {
-        // marcar seleccionado
-        document.querySelectorAll('.numero-celda').forEach(c => c.classList.remove('seleccionado'));
-        celda.classList.add('seleccionado');
-        numeroSeleccionado = n;
-        numeroSeleccionadoEl.textContent = `Número seleccionado: ${n}`;
-      });
+      // colores ruleta
+      if (redSet.has(n)) celda.classList.add("rojo");
+      else if (blackSet.has(n)) celda.classList.add("negro");
 
       tapeteEl.appendChild(celda);
     }
+
+    // ✅ REACTIVAR selección de números
+    document.querySelectorAll(".numero-celda").forEach(celda => {
+      celda.addEventListener("click", function () {
+        // eliminar selección previa
+        document.querySelectorAll(".numero-celda").forEach(c => c.classList.remove("seleccionado"));
+
+        // marcar seleccionado
+        this.classList.add("seleccionado");
+
+        // guardar número seleccionado
+        numeroSeleccionado = Number(this.textContent);
+        numeroSeleccionadoEl.textContent = `Número seleccionado: ${numeroSeleccionado}`;
+      });
+    });
   }
 
   crearTapete();
+
 
   // ===== Girar ruleta =====
   function spinToIndex(index, spins = 6, ms = 4000) {
