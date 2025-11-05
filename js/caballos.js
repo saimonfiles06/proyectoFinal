@@ -4,33 +4,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const pista = document.querySelector('.carrera-pista');
   const apuestasBox = document.querySelector('.carrera-apuestas p');
   const gananciasBox = document.querySelector('.carrera-ganancias p');
-  const btnRepetir = document.querySelector('.carrera-columna:first-child .btn-carrera');
   const btnSeleccionar = document.querySelector('.carrera-columna:last-child .btn-carrera');
+  const btnEmpezar = document.createElement('button');
+  btnEmpezar.textContent = '🏁 Empezar Carrera';
+  btnEmpezar.className = 'btn-carrera mt-3';
+  document.querySelector('.carrera-columna:nth-child(2)').appendChild(btnEmpezar);
 
   const numCaballos = 5;
   const caballos = [];
   let apuesta = 0;
   let caballoElegido = null;
 
-  // Crear elementos de caballos en la pista
+  // Crear caballos en la pista
   function crearCaballos() {
     pista.innerHTML = '';
+    caballos.length = 0;
     for (let i = 0; i < numCaballos; i++) {
       const div = document.createElement('div');
       div.className = 'caballo';
       div.style.width = '50px';
       div.style.height = '50px';
-      div.style.backgroundColor = '#c9a23f';
+      div.style.backgroundColor = `hsl(${i * 60}, 70%, 50%)`;
       div.style.borderRadius = '50%';
       div.style.margin = '5px';
-      div.style.position = 'relative';
+      div.style.position = 'absolute';
       div.style.left = '0px';
-      div.style.transition = 'left 0.2s linear';
-      div.textContent = i + 1;
+      div.style.top = `${i * 60}px`; // separación vertical
       div.style.display = 'flex';
       div.style.alignItems = 'center';
       div.style.justifyContent = 'center';
       div.style.fontWeight = 'bold';
+      div.style.transition = 'left 0.2s linear';
+      div.textContent = i + 1;
       caballos.push(div);
       pista.appendChild(div);
     }
@@ -38,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   crearCaballos();
 
-  // Seleccionar caballo
+  // Selección de caballo y apuesta
   btnSeleccionar.addEventListener('click', () => {
     caballoElegido = prompt(`Selecciona un caballo (1-${numCaballos})`);
     caballoElegido = parseInt(caballoElegido);
@@ -57,28 +62,24 @@ document.addEventListener('DOMContentLoaded', () => {
     apuestasBox.textContent = `Has apostado $${apuesta} al caballo ${caballoElegido}`;
   });
 
-  // Función para iniciar carrera
-  btnRepetir.addEventListener('click', () => {
+  // Función para iniciar la carrera
+  btnEmpezar.addEventListener('click', () => {
     if (!caballoElegido || !apuesta) {
       alert('Selecciona un caballo y apuesta antes de empezar.');
       return;
     }
 
-    // Reset pista
+    // Reset caballos a la izquierda
     caballos.forEach(c => c.style.left = '0px');
 
-    let interval = setInterval(() => {
+    const pistaWidth = pista.clientWidth - 60; // ancho máximo de recorrido
+
+    const interval = setInterval(() => {
       let fin = false;
       caballos.forEach(c => {
-        // Avanza aleatoriamente entre 1 y 10 px
-        const avance = Math.floor(Math.random() * 10) + 1;
-        c.style.left = (parseInt(c.style.left) + avance) + 'px';
-
-        // Revisar si alguno llegó al final
-        const max = pista.clientWidth - c.clientWidth - 10;
-        if (parseInt(c.style.left) >= max) {
-          fin = true;
-        }
+        const avance = Math.floor(Math.random() * 10) + 1; // movimiento aleatorio
+        c.style.left = Math.min(parseInt(c.style.left) + avance, pistaWidth) + 'px';
+        if (parseInt(c.style.left) >= pistaWidth) fin = true;
       });
 
       if (fin) {
@@ -96,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (ganador === caballoElegido) {
-          const ganancias = apuesta * 2; // paga 2:1
+          const ganancias = apuesta * 2;
           gananciasBox.textContent = `$${ganancias}`;
           alert(`¡Felicidades! Ganó tu caballo ${ganador}. Has ganado $${ganancias}.`);
         } else {
