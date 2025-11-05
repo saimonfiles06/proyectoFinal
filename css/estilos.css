@@ -255,10 +255,19 @@ header {
   margin-top: 30px;
 }
 
+.mesas-wrapper {
+  display: flex;
+  justify-content: center; /* centra el conjunto */
+  align-items: flex-start;
+  gap: 20px; /* espacio entre mesas */
+  flex-wrap: wrap; /* para móvil se apilen */
+}
+
+/* Mantener estilo de mesas */
 .mesa-dealer,
 .mesa-jugador {
-  width: 100%;
-  max-width: 600px;
+  flex: 1 1 300px; /* ancho mínimo 300px, crecer hasta disponible */
+  max-width: 450px; /* evita que sean demasiado grandes */
   min-height: 160px;
   background-color: #111;
   border: 5px solid #c9a23f;
@@ -266,7 +275,7 @@ header {
   box-shadow: 0 0 20px rgba(201, 162, 63, 0.4);
 
   display: flex;
-  flex-direction: column; /* ✅ Para que el texto y las cartas no se solapen */
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 
@@ -279,22 +288,25 @@ header {
 .botones-blackjack {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 12px;
   flex-wrap: wrap;
-  gap: 10px;
-  max-width: 600px;
   width: 100%;
+  max-width: 500px;
+  margin: 0 auto; /* ✅ Centrado total */
 }
 
 .btn-blackjack {
-  flex: 1 1 45%;
+  flex: 1 1 auto;
   min-width: 140px;
+  max-width: 160px; /* ✅ Botones más equilibrados */
   background-color: #c9a23f;
   color: #0a0a0a;
   font-weight: bold;
   border: none;
   border-radius: 10px;
-  padding: 10px;
-  transition: background-color 0.3s;
+  padding: 12px 14px;
+  transition: 0.3s;
   text-align: center;
 }
 

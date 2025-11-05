@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es-ES">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,13 @@
   <link rel="stylesheet" href="../css/estilos.css">
   <link rel="shortcut icon" href="../img/blackjack.png" type="image/x-icon">
 </head>
+
 <body>
   <header class="d-flex justify-content-between align-items-center p-3 flex-wrap">
     <a href="../index.html" class="navbar-brand">
       <img src="../img/logo.png" alt="Logo de Gran Casino" class="header-logo">
     </a>
-      <img src="../img/blackjack.png" alt="Ruleta de Gran Casino" class="header-ruleta img-fluid">
+    <img src="../img/blackjack.png" alt="Ruleta de Gran Casino" class="header-ruleta img-fluid">
   </header>
 
   <main class="container text-center mt-4">
@@ -32,18 +34,19 @@
         🟥 Dealer: <span id="score-dealer">0</span>
       </div>
     </div>
+    <!-- Contenedor mesas -->
+    <div class="mesas-wrapper mb-4">
+      <div class="mesa-dealer" id="mesa-dealer">
+        Dealer: <span id="puntos-dealer">0</span>
+        <div id="cartas-dealer" class="d-flex justify-content-center gap-2 mt-2"></div>
+      </div>
 
-    <!-- Mesa del dealer -->
-    <div class="mesa-dealer mb-3" id="mesa-dealer">
-      Dealer: <span id="puntos-dealer">0</span>
-      <div id="cartas-dealer" class="d-flex justify-content-center gap-2 mt-2"></div>
+      <div class="mesa-jugador" id="mesa-jugador">
+        Jugador: <span id="puntos-jugador">0</span>
+        <div id="cartas-jugador" class="d-flex justify-content-center gap-2 mt-2"></div>
+      </div>
     </div>
 
-    <!-- Mesa del jugador -->
-    <div class="mesa-jugador mb-3" id="mesa-jugador">
-      Jugador: <span id="puntos-jugador">0</span>
-      <div id="cartas-jugador" class="d-flex justify-content-center gap-2 mt-2"></div>
-    </div>
 
     <!-- Botones -->
     <div class="botones-blackjack mb-4">
@@ -80,4 +83,5 @@
 
   <script src="../js/blackjack.js"></script>
 </body>
+
 </html>
