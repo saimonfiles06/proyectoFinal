@@ -1,4 +1,3 @@
-// ===== CONFIGURACIÓN =====
 const simbolos = ["🍒", "🍋", "🍉", "⭐", "🔔", "7️⃣"];
 
 let apuestaActual = 10;
