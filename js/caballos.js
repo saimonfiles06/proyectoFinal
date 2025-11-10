@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Reset caballos a la izquierda
+    // Reset carrera
     caballos.forEach(c => c.style.left = '0px');
 
     const pistaWidth = pista.clientWidth - 60; // ancho máximo de recorrido
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const interval = setInterval(() => {
       let fin = false;
       caballos.forEach(c => {
-        const avance = Math.floor(Math.random() * 10) + 1; // movimiento aleatorio
+        const avance = Math.floor(Math.random() * 10) + 1; // Velocidad aleatoria para cada caballo
         c.style.left = Math.min(parseInt(c.style.left) + avance, pistaWidth) + 'px';
         if (parseInt(c.style.left) >= pistaWidth) fin = true;
       });

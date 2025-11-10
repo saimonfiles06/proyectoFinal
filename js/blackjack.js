@@ -1,4 +1,4 @@
-// ===== VARIABLES PRINCIPALES =====
+//Variables principales
 let mazo = [];
 let puntosJugador = 0;
 let puntosDealer = 0;
@@ -22,7 +22,7 @@ const marcadorJugador = document.getElementById('score-jugador');
 const marcadorDealer = document.getElementById('score-dealer');
 const marcadorEmpates = document.getElementById('score-empates');
 
-// ===== FUNCIONES =====
+// Funciones
 function crearMazo() {
   const palos = ['♠', '♥', '♦', '♣'];
   const valores = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
@@ -34,7 +34,7 @@ function crearMazo() {
     }
   }
 
-  // Mezclar
+  // Barajar
   mazo.sort(() => Math.random() - 0.5);
 }
 
@@ -118,7 +118,7 @@ function determinarGanador() {
   }, 300);
 }
 
-// ===== EVENTOS =====
+// On click botones
 btnRepartir.addEventListener('click', () => {
   crearMazo();
   cartasJugador.innerHTML = '';

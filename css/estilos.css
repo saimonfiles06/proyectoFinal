@@ -4,7 +4,6 @@ body {
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* ====== HEADER ====== */
 header {
   background-color: #0a0a0a;
   border-bottom: 2px solid #c9a23f;
@@ -43,7 +42,6 @@ header {
   color: #c9a23f;
 }
 
-/* ====== Cards ====== */
 .card {
   background-color: #111;
   color: #fff;
@@ -79,7 +77,6 @@ header {
   box-shadow: 0 0 20px rgba(201, 162, 63, 0.4);
 }
 
-/* ===== Ruleta ===== */
 .main-ruleta {
   display: flex;
   justify-content: center;
@@ -89,7 +86,6 @@ header {
   flex-wrap: wrap;
 }
 
-/* 🎯 TAPETE */
 .tapete {
   flex: 1;
   min-width: 250px;
@@ -157,7 +153,6 @@ header {
   border-color: #c9a23f;
 }
 
-/* 🎡 RULETA */
 .ruleta-container {
   flex: 1;
   min-width: 250px;
@@ -186,7 +181,6 @@ header {
   justify-content: center;
   align-items: flex-start;
   gap: 40px;
-  /* espacio entre tapete y panel */
 }
 
 .tapete {
@@ -248,7 +242,6 @@ header {
   background-color: #e1be58;
 }
 
-/* ===== Blackjack ===== */
 .blackjack-game-area {
   display: flex;
   flex-direction: column;
@@ -260,21 +253,14 @@ header {
 .mesas-wrapper {
   display: flex;
   justify-content: center;
-  /* centra el conjunto */
   align-items: flex-start;
   gap: 20px;
-  /* espacio entre mesas */
   flex-wrap: wrap;
-  /* para móvil se apilen */
 }
-
-/* Mantener estilo de mesas */
 .mesa-dealer,
 .mesa-jugador {
   flex: 1 1 300px;
-  /* ancho mínimo 300px, crecer hasta disponible */
   max-width: 450px;
-  /* evita que sean demasiado grandes */
   min-height: 160px;
   background-color: #111;
   border: 5px solid #c9a23f;
@@ -301,14 +287,12 @@ header {
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
-  /* ✅ Centrado total */
 }
 
 .btn-blackjack {
   flex: 1 1 auto;
   min-width: 140px;
   max-width: 160px;
-  /* ✅ Botones más equilibrados */
   background-color: #c9a23f;
   color: #0a0a0a;
   font-weight: bold;
@@ -323,7 +307,6 @@ header {
   background-color: #e1be58;
 }
 
-/* ===== MARCADOR DE BLACKJACK ===== */
 .marcador-blackjack {
   display: flex;
   justify-content: center;
@@ -365,7 +348,6 @@ header {
   margin-left: 8px;
 }
 
-/* ===== CARTAS ===== */
 .carta {
   background-color: #fff;
   color: #000;
@@ -380,7 +362,6 @@ header {
   font-size: 1.2rem;
 }
 
-/* ===== Tragaperras ===== */
 .slots-game-area {
   display: flex;
   justify-content: space-between;
@@ -396,7 +377,6 @@ header {
   border-radius: 15px;
   padding: 15px;
   color: #c9a23f;
-  /* Centramos el contenido */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -406,7 +386,6 @@ header {
   margin: 0;
 }
 
-/* 🎰 INTERFAZ PRINCIPAL DE LOS SLOTS */
 .slots-interface {
   flex: 1;
   min-width: 300px;
@@ -426,7 +405,6 @@ header {
   padding: 0;
 }
 
-/* 🎡 CONTENEDOR DE LOS REELS */
 .reels {
   display: flex;
   justify-content: space-between;
@@ -437,7 +415,6 @@ header {
   padding: 0;
 }
 
-/* 🎰 CADA REEL ocupa exactamente 1/3 del ancho de la interfaz */
 .reel {
   flex: 1 1 33.333%;
   display: flex;
@@ -453,7 +430,6 @@ header {
   border-right: none;
 }
 
-/* ✨ Efecto de parpadeo cuando se gana */
 .reel.ganador {
   animation: brillo 0.8s ease-in-out infinite alternate;
 }
@@ -472,7 +448,6 @@ header {
   font-weight: bold;
 }
 
-/* 🎮 Botones y selector de apuesta */
 .botones-slots-container {
   display: flex;
   flex-direction: column;
@@ -501,7 +476,7 @@ header {
   transition: background-color 0.3s;
 }
 
-/* 🎰 Selector de apuesta (mantiene los colores dorados y el estilo desplegable nativo) */
+/* Selector de apuesta (mantiene los colores dorados y el estilo desplegable nativo) */
 #apuesta-selector {
   flex: 1;
   appearance: auto;
@@ -530,8 +505,6 @@ header {
   box-shadow: 0 0 8px rgba(201, 162, 63, 0.7);
 }
 
-
-/* ===== Carrera de Caballos ===== */
 .carrera-game-area {
   display: flex;
   justify-content: space-between;
@@ -617,7 +590,6 @@ header {
   background-color: #e1be58;
 }
 
-/* ===== Footer ===== */
 .footer {
   background: #0a0a0a;
   color: #f2f2f2;
@@ -635,12 +607,9 @@ header {
   color: #ff4d4d;
 }
 
-/* ==========================================================
-   📱 ESTILOS PARA MÓVIL
-   ========================================================== */
+
 @media (max-width: 768px) {
 
-  /* ===== Header ===== */
   header {
     flex-direction: column;
     text-align: center;
@@ -682,7 +651,6 @@ header {
     margin: 0 auto;
   }
 
-  /* ===== Botones ===== */
   .botones-fila {
     flex-direction: column;
     align-items: center;
@@ -696,15 +664,11 @@ header {
     font-size: 0.95rem;
   }
 
-  /* ===== Footer ===== */
   footer {
     font-size: 0.8rem;
   }
 }
 
-/* ==========================================================
-   💻 ESTILOS PARA TABLET
-   ========================================================== */
 @media (min-width: 769px) and (max-width: 1024px) {
 
   /* ===== Header ===== */
@@ -712,33 +676,27 @@ header {
     padding: 10px 20px;
   }
 
-  /* ===== Cards ===== */
-  /* 3 por fila iguales */
   .card {
     flex: 1 1 calc(33.333% - 20px);
     max-width: calc(33.333% - 20px);
   }
 
-  /* Imagen de la card de carrera de caballos ajustada */
   .card img[src*="carrera"] {
     height: 220px;
     object-fit: cover;
     object-position: top center;
   }
 
-  /* Igualamos altura visual de todas las cards */
   .card {
     flex: 1 1 30%;
     max-width: 30%;
   }
 
-  /* Evita que las cards se rompan en filas desiguales */
   .row.cards {
     justify-content: center;
     gap: 20px;
   }
 
-  /* ===== Áreas de juego ===== */
   .main-ruleta,
   .slots-game-area,
   .carrera-game-area {
@@ -766,7 +724,6 @@ header {
     margin: 0 auto;
   }
 
-  /* ===== Botones ===== */
   .botones-fila {
     flex-wrap: wrap;
     justify-content: center;
@@ -788,8 +745,6 @@ header {
   .btn-carrera {
     font-size: 1rem;
   }
-
-  /* ===== Ruleta ===== */
   .ruleta-img {
     width: 260px;
   }

@@ -16,13 +16,13 @@ const apuestaSelector = document.getElementById("apuesta-selector");
 const botonGirar = document.getElementById("slot-spin");
 const botonRepetir = document.getElementById("slot-repetir");
 
-// ===== ACTUALIZAR APUESTA =====
+//Actualizacion apuesta
 apuestaSelector.addEventListener("change", () => {
   apuestaActual = parseInt(apuestaSelector.value);
   apuestaDisplay.textContent = apuestaActual;
 });
 
-// ===== FUNCIÓN DE GIRO REALISTA =====
+//Funcion del giro
 function girarReel(reel, tiempoGiro) {
   return new Promise((resolve) => {
     reel.classList.remove("ganador");
@@ -60,7 +60,7 @@ function girarReel(reel, tiempoGiro) {
   });
 }
 
-// ===== GIRO PRINCIPAL =====
+//Giros
 async function girar() {
   botonGirar.disabled = true;
   botonRepetir.disabled = true;
@@ -77,7 +77,7 @@ async function girar() {
   botonRepetir.disabled = false;
 }
 
-// ===== COMPROBAR GANANCIA =====
+//Comprobacion ganancias
 function comprobarGanancia(resultados) {
   const [a, b, c] = resultados;
   let ganancia = 0;
@@ -103,6 +103,6 @@ function comprobarGanancia(resultados) {
   gananciasDisplay.textContent = gananciasTotales;
 }
 
-// ===== EVENTOS =====
+//On clik botones
 botonGirar.addEventListener("click", girar);
 botonRepetir.addEventListener("click", girar);
